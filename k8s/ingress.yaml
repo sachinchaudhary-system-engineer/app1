@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: ingress-1
+  namespace: jenkins
+
+spec:
+  ingressClassName: nginx
+
+  rules:
+    - host: sachin.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: service-1
+                port:
+                  number: 80
+
+          - path: /product
+            pathType: Prefix
+            backend:
+              service:
+                name: service-2
+                port:
+                  number: 80
